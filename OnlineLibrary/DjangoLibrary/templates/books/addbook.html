@@ -1,0 +1,19 @@
+{% extends 'djangolib/layout.html'%}
+
+{% block title%}Форма для добавления книги {% endblock %}
+{% block content%}
+    <h1>Пополните нашу библиотеку своей книгой!</h1>
+    <div class="error"><span>{{error}}</span></div>
+    <p>Ваша книга попадет в общую библиотеку после модерации администратора</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{form.title}}<br>
+        {{form.summary}}<br>
+        {{form.author}}<br>
+        {{form.category}}<br>
+        {{form.pages}}<br>
+        {{form.txt}}<br>
+        <button class="btn btn-success" type="submit"> Загрузить </button>
+    </form>
+{% endblock %}
