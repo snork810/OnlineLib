@@ -1,0 +1,10 @@
+{% extends 'djangolib/layout.html'%}
+
+{% block title%} Книжная Полка {% endblock %}
+{% block content%}
+
+    <h1>Книжная полка</h1>
+    <p>Здесь хранятся книги которые вы читали ранее</p>
+    <button class="btn btn-warning"><a href="{% url 'addbook' %}">Добавить свою книгу</a></button>
+
+{% endblock %}
