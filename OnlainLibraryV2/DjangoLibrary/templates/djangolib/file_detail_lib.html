@@ -1,7 +1,10 @@
 {% extends 'djangolib/layout.html'%}
     {% block title%}File Content{% endblock %}
 {% block content%}
-    <h1>File Content</h1>
-    <pre>{{ content }}</pre>
-    <a href="{% url 'library' %}">Back to file list</a>
+
+ <h1>File Content</h1>
+    <div class="text-content">
+        <pre>{{ content }}</pre>
+        <a href="{% url 'library' %}">Back to library</a>
+    </div>
 {% endblock %}

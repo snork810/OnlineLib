@@ -12,11 +12,17 @@
         <img src="{% static 'djangolib/img/logotip.jpg'%}" alt="Logotip">
         <span class="logo">MyLibrary</span>
         <h3>Навигация</h3>
+            {% if user.is_authenticated %}
+            {{user.username}} <a href="{% url 'accounts:logout' %}">Выйти</a>
+            {% else %}
+            <a href="{% url 'accounts:login' %}">Войти</a> <a href="{% url 'accounts:register' %}">Регистрация</a>
+            {% endif %}
         <ul>
+
             <a href="{% url 'home'%}"> <li> <i class="fa-solid fa-home"></i> Главнaя</li></a>
             <a href="{% url 'library'%}"><li> <i class="fa-solid fa-book"></i> Книгохранилище</li></a>
             <a href="{% url 'bookshelf'%}"><li> <i class="fa-solid fa-bookmark"></i> Моя полка</li></a>
-            <a href="{% url 'file_list'%}"><li> <i class="fa-solid fa-bookmark"></i> Мои загруженные книги</li></a>
+
 
         </ul>
 
@@ -27,6 +33,11 @@
         {% endblock %}
         </div>
     </main>
+<!--    <footer>-->
+<!--        <div class="info-footer">-->
+<!--        <p>© 2024 MyLibrary. Все права защищены.</p>-->
+<!--        </div>-->
+<!--    </footer>-->
 
 </body>
 </html>

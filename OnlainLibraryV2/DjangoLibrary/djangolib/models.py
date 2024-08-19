@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Author(models.Model):
     name = models.CharField(max_length=100, db_index=True)
@@ -26,3 +26,10 @@ class EBooksModel(models.Model):
         verbose_name = 'Электронная книга'
         verbose_name_plural = 'Электронные книги'
 
+class FavouriteBook(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(EBooksModel, on_delete=models.CASCADE)
+    added_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'book')

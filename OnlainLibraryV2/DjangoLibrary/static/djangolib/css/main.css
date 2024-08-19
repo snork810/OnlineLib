@@ -8,7 +8,7 @@ aside {
     background: #000000;
     width: 20%;
     padding: 2.5%;
-    height: 70vh;
+    height: 100vh;
     color: #fff;
     border-right: 5px solid #009900;
     border-bottom: 5px solid #009900
@@ -72,7 +72,7 @@ main .features p {
 main .card {
     float: center;
     clear: both;
-    width: 500px;
+    max-width: 500px;
     margin: 20px auto;
 
     opacity:0.8;
@@ -97,4 +97,33 @@ form{
 }
 main .error{
     color: red;
+}
+
+
+
+main .text-content {
+    color: #fff;
+    overflow-wrap: break-word;  /* Перенос длинных слов */
+    hyphens: auto;  /* Автоматический перенос слов при необходимости */
+    margin: auto;
+    padding: 30px;  /* Отступы внутри блока текста */
+    white-space: pre-wrap;  /* Сохраняем пробелы и переносы строк */
+    max-width: 1300px;  /* Максимальная ширина блока */
+    word-wrap: break-word;  /* Для более старых браузеров */
+    overflow: hidden;  /* Скрыть переполнение */
+    display: block;  /* Убедитесь, что блок правильно отображается */
+   }
+
+footer .info-footer{
+    background-color: #f8f9fa; /* Светло-серый фон */
+    color: #fff;             /* Темный цвет текста для контраста */
+    padding: 20px;             /* Внутренние отступы */
+    text-align: center;        /* Выравнивание текста по центру */
+    border-top: 1px solid #dee2e6; /* Верхняя граница */
+    position: relative;        /* Относительное позиционирование */
+    bottom: 0;                /* Прикрепление к нижней части контейнера */
+    left: 0;                  /* Прикрепление к левой части контейнера */
+    right: 0;                 /* Прикрепление к правой части контейнера */
+    height: 100px;            /* Высота поля */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Легкая тень сверху */
 }

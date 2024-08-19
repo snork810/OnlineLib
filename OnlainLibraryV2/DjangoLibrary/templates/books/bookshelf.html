@@ -5,6 +5,20 @@
 
     <h1>Книжная полка</h1>
     <p>Здесь хранятся книги которые вы читали ранее</p>
+    <div class="card">
+        <h2>Избранное</h2>
+        {% for file in favorites %}
+            <a href="{% url 'file_detail' file.pk %}">{{ file.title }}</a>
+        {% empty %}
+            <p>У вас пока нет избранных книг.</p>
+        {% endfor %}
+
+
+        {% for file in files %}
+            <a href="{% url 'file_detail' file.pk %}">{{ file.title }}</a>
+        {% endfor %}
+
+    </div>
     <button class="btn btn-warning"><a href="{% url 'addbook' %}">Добавить свою книгу</a></button>
 
 {% endblock %}

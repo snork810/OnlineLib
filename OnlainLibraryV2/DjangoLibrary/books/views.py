@@ -3,9 +3,20 @@ from .models import NoModeratedBooksModel
 from .forms import NoModeratedBooksModelForm
 
 
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+
+from djangolib.models import FavouriteBook
+
+# С УТРА ПОПРОБОВАТЬ СЛИТЬ BOOKS И DJANGOLIB В ОДНО ПРИЛОЖЕНИЕ
+@login_required
 def bookshelf(request):
-    return render(request, 'books/bookshelf.html')
+    files = NoModeratedBooksModel.objects.all()
+    favorites = FavouriteBook.objects.filter(user=request.user)
+    context = {
+        'files': files,
+        'favorites': favorites
+    }
+    return render(request, 'books/bookshelf.html', context)
 
 
 def addbook(request):
@@ -14,7 +25,7 @@ def addbook(request):
         form = NoModeratedBooksModelForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('file_list')
+            return redirect('bookshelf')
         else:
             error = 'Форма была заполнена некорректно'
 
@@ -24,9 +35,7 @@ def addbook(request):
                }
     return render(request, 'books/addbook.html', context)
 
-def file_list(request):
-    files = NoModeratedBooksModel.objects.all()
-    return render(request, 'books/file_list.html', {'files': files})
+
 
 def file_detail(request, pk):
     file_instance = NoModeratedBooksModel.objects.get(pk=pk)

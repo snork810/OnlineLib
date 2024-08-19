@@ -12,7 +12,10 @@
             <a href="{{book.author.id}}"><h6 class="card-subtitle mb-2 text-muted">{{ book.author }}</h6></a>
             <p class="card-text">{{ book.summary }}</p>
         </div>
-        <a href="add_to_bookshelf/">Добавить на полку</a>
+        <form method="post" action="{% url 'favourite' book.id %}">
+            {% csrf_token %}
+        <button type="submit">Добавить в Избранное</button>
+        </form>
     </div>
 {% endfor %}
 {% endblock %}
