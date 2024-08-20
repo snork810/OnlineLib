@@ -14,9 +14,19 @@
         </div>
         <form method="post" action="{% url 'favourite' book.id %}">
             {% csrf_token %}
-            <button type="submit">Добавить в Избранное</button><a href="{{book.txt.url}}" download={{book.txt}}>Скачать</a>
+            <button type="submit">Добавить в Избранное</button>
         </form>
-
+        <br>
+        <form method="POST" action="{% url 'download_file' book.id %}">
+                {% csrf_token %}
+                <label for="format">Выберите формат для скачивания:</label>
+                <select name="format" id="format">
+                <option value="txt">TXT</option>
+                <option value="fb2">FB2</option>
+                <option value="epub">EPUB</option>
+                </select>
+            <button type="submit">Скачать</button>
+        </form>
     </div>
 {% endfor %}
 <br>

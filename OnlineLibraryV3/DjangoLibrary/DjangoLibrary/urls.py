@@ -26,6 +26,7 @@ urlpatterns = [
     path('library/', views.library, name='library'),
     path('library/files/<int:pk>/', views.file_detail_lib, name='file_detail_lib'),
     path('favourite/<int:book_id>/', views.add_to_favorites, name='favourite'),
+    path('download/<int:book_id>/', views.download_file, name='download_file'),
     path('bookshelf/', include('books.urls')),
     path('accounts/', include('registration.urls', namespace="accounts")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

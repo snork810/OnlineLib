@@ -15,7 +15,9 @@ class EBooksModel(models.Model):
     title = models.CharField('Название', max_length=80)
     summary = models.TextField('Аннотация',max_length=10000)
     pages = models.CharField("Количество страниц",max_length=80)
-    txt = models.FileField("Загрузите файл",upload_to='texts/')
+    txt = models.FileField("Загрузите файл в формате txt",upload_to='texts/txt/')
+    fb2 = models.FileField("Загрузите файл в формате fb2", upload_to='texts/fb2/', null=True, blank=True)
+    epub = models.FileField("Загрузите файл в формате epub", upload_to='texts/epub/', null=True, blank=True)
     author = models.ForeignKey('Author', on_delete=models.CASCADE)
     category = models.CharField("Категория",max_length=80)
 
