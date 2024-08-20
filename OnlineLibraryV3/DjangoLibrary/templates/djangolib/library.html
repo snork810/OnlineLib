@@ -1,0 +1,23 @@
+{% extends 'djangolib/layout.html' %}
+
+{% block title %}Книгохранилище{% endblock %}
+{% block content %}
+<h1>Книгохранилище</h1>
+<p>Приглашаем вас ознакомиться с нашей подборкой!</p>
+
+{% for book in books %}
+    <div class="card">
+        <div class="card-body">
+            <a href="{% url 'file_detail_lib' book.pk %}"><h4 class="card-title">{{ book.title }}</h4></a>
+            <a href="{{book.author.id}}"><h6 class="card-subtitle mb-2 text-muted">{{ book.author }}</h6></a>
+            <p class="card-text">{{ book.summary }}</p>
+        </div>
+        <form method="post" action="{% url 'favourite' book.id %}">
+            {% csrf_token %}
+            <button type="submit">Добавить в Избранное</button><a href="{{book.txt.url}}" download={{book.txt}}>Скачать</a>
+        </form>
+
+    </div>
+{% endfor %}
+<br>
+{% endblock %}

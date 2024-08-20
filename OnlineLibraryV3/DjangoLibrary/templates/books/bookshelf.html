@@ -1,0 +1,28 @@
+{% extends 'djangolib/layout.html'%}
+
+{% block title%} Книжная Полка {% endblock %}
+{% block content%}
+
+    <h1>Книжная полка</h1>
+    <p>Здесь хранятся книги которые вы читали ранее</p>
+
+        <h2>Избранное</h2>
+        {% for fav_file in favorites %}
+    <div class="card">
+            <a href="{% url 'file_detail_FB' fav_file.pk %}">{{ fav_file.book }}</a>
+    </div>
+        {% empty %}
+            <p>У вас пока нет избранных книг.</p>
+        {% endfor %}
+
+        <h2>Загруженное</h2>
+        {% for file in files %}
+    <div class="card">
+            <a href="{% url 'file_detail_NMB' file.pk %}">{{ file.title }}</a>
+    </div>
+        {% endfor %}
+
+
+    <button class="btn btn-warning"><a href="{% url 'addbook' %}">Добавить свою книгу</a></button>
+
+{% endblock %}
