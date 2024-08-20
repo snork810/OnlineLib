@@ -1,0 +1,37 @@
+{% extends 'djangolib/layout.html' %}
+
+{% block title %}Книгохранилище{% endblock %}
+{% block content %}
+<h1>Книгохранилище</h1>
+<p>Приглашаем вас ознакомиться с нашей подборкой!</p>
+
+{% for book in books %}
+    <div class="card">
+        <div class="card-body">
+            <a href="{% url 'file_detail_lib' book.pk %}"><h4 class="card-title">{{ book.title }}</h4></a>
+            <a href="{{book.author.id}}"><h6 class="card-subtitle mb-2 text-muted">{{ book.author }}</h6></a>
+            <p class="card-text">{{ book.summary }}</p>
+        </div>
+        {% if book.id not in user_favourite_ids %}
+        <form method="post" action="{% url 'favourite' book.id %}">
+            {% csrf_token %}
+            <button type="submit">Добавить в Избранное</button>
+        </form>
+        {%else%}
+            <p>Книга добавлена в избранное</p>
+        {% endif %}
+        <br>
+        <form method="POST" action="{% url 'download_file' book.id %}">
+                {% csrf_token %}
+                <label for="format">Выберите формат для скачивания:</label>
+                <select name="format" id="format">
+                <option value="txt">TXT</option>
+                <option value="fb2">FB2</option>
+                <option value="epub">EPUB</option>
+                </select>
+            <button type="submit">Скачать</button>
+        </form>
+    </div>
+{% endfor %}
+<br>
+{% endblock %}
